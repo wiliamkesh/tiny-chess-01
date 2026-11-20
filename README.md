@@ -24,15 +24,18 @@ PVS with null-window re-search, transposition table kept across moves
 (cleared past 250k entries, mate-distance normalized, repetition scores
 never stored), guarded null-move pruning, LMR, check extension, reverse
 futility (85*d) and futility (120*d, promotions exempt), two killers per
-ply, history heuristic, quiescence with delta pruning. Node limit 180000
-per move, iterative deepening at the root, previous best move first.
+ply, history heuristic, quiescence with delta pruning. Node limit 150000
+per move (fixed, deterministic), iterative deepening at the root,
+previous best move first.
 
 ## Results
 
 Local practice trials: 2112 Elo (6-0-0) on trial-0/1/2, gauntlet 8/12
-vs nodes-1M/2M. The entrypoint is packed from `clean_engine.py` with
-the kit's own `node cli/makefun.mjs compress`; the readable source is
-bundled beside the session for the transcript check.
+vs nodes-1M/2M. The entrypoint (4095 bytes) is packed from
+`engine_2112_golf.py` with the kit's own `node cli/makefun.mjs compress`;
+the readable source is bundled beside the session for the transcript
+check. P0 7/7; golden-oracle 15/15 positions identical bestmove+nodes
+vs the 4093-byte golden engine.
 
 ## License
 
