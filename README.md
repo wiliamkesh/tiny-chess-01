@@ -96,6 +96,22 @@ Step 2 — node-budget calibration (19 Nov 2026):
 - Gauntlet vs nodes-1M/2M (12 games): 7-2-3 (8 points). 1M: 4-1-1,
   2M: 3-1-2. Gate gauntlet >=7/12 PASSED.
 
+## Recovery (20 Nov 2026, 11:41 WIB)
+
+- The surgical subagent died mid-submit-prep (model error: output
+  token cap). It had already pushed the submit repo (commit c918d95)
+  and its fresh `main.py` was left corrupted at 3843 B (broken
+  loader, payload crash) — that file scored Elo 0 in a verification
+  trial and must never be submitted.
+- The good cycle-2 engine (4093 B) was intact in `cycle1/main.py`
+  and `main.py.packpy.bak` (identical md5) and was restored from it.
+- Gauntlet re-verified from state.json `outcome` fields (bot's own
+  perspective): A 3-0-1, B 3-1-0, C 1-1-2 (Pirc lost as Black) —
+  total 7-2-3, 8 points. Gate >=7/12 PASSED.
+- Recovery sanity check (trial-0, restored engine): Elo 2112, 6-0-0,
+  spare 673 — byte-identical to cycle-2 trial-0. Loader re-authored
+  in a fresh session and re-packed to the same md5 (4093 B).
+
 ## Final metrics
 
 - `main.py`: 4093 bytes (limit 4096, 3 bytes spare).
